@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a08">
+  <meta name="description" content="Meet Rok! AI shouldn't be hard. Create amazing images with BleepBloop AI.">
+  <title>Rok — AI Made Easy</title>
+
+  <link rel="icon" type="image/png" href="New%20Project.png">
+
+  <style>
+    :root {
+      --bg: #080a08;
+      --panel: #111611;
+      --green: #a4e639;
+      --text: #f4f6f0;
+      --muted: #a4ada0;
+      --border: #293328;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(8, 10, 8, .94);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--green);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a:not(.button) {
+      color: var(--muted);
+    }
+
+    .nav-links a:not(.button):hover {
+      color: var(--green);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #11160b;
+      font-weight: 800;
+      border: 1px solid var(--green);
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #c2ff62;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    .button.secondary:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .hero {
+      padding: 85px 0;
+      background:
+        radial-gradient(ellipse at 75% 30%,
+          rgba(164, 230, 57, .10), transparent 45%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 7vw, 6rem);
+      line-height: .98;
+      letter-spacing: -5px;
+      margin: 20px 0;
+    }
+
+    h1 span { color: var(--green); }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 530px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .mascot-box {
+      min-height: 390px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle, rgba(164,230,57,.12), transparent 65%),
+        var(--panel);
+    }
+
+    .mascot-box img {
+      width: min(80%, 320px);
+      height: auto;
+      border-radius: 12px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .mascot-label {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      color: var(--green);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      border-radius: 12px;
+      font-size: .85rem;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    section { padding: 70px 0; }
+
+    .section-label {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      font-size: .8rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin: 10px 0;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .quote {
+      padding: 35px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(120deg,
+        rgba(164,230,57,.09), transparent);
+    }
+
+    .quote blockquote {
+      margin: 0;
+      font-size: clamp(1.5rem, 3vw, 2.3rem);
+      font-weight: 850;
+      letter-spacing: -1px;
+    }
+
+    .quote p { color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .card {
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .card h3 { margin: 0 0 8px; }
+
+    .card p { color: var(--muted); margin-bottom: 0; }
+
+    .cta {
+      text-align: center;
+      padding: 55px 25px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--panel);
+    }
+
+    .cta p {
+      color: var(--muted);
+      max-width: 550px;
+      margin: 15px auto 25px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding: 55px 0; }
+      .mascot-box { min-height: 300px; }
+      .cards { grid-template-columns: 1fr; }
+      .nav-links { gap: 10px; }
+      .nav-links a:not(.button) { display: none; }
+      h1 { letter-spacing: -3px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#home">rok.</a>
+
+      <div class="nav-links">
+        <a href="#about">About Rok</a>
+        <a href="#values">Our mission</a>
+        <a class="button"
+           href="https://bleepbloopai.github.io/generator/">
+          Make Images ↗
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+
+      <div>
+        <div class="eyebrow">MEET YOUR NEW FAVORITE MASCOT</div>
+
+        <h1>Meet <span>Rok.</span><br>AI imagesmade<br>made even easier.</h1>
+
+        <p>
+          Rok is a rock with one big idea:
+          using AI should be simple, fun, and accessible to everyone.
+          No confusing jargon. No unnecessary complications.
+          Just bring your prompt.
+        </p>
+
+        <div class="actions">
+          <a class="button"
+             href="https://bleepbloopai.github.io/generator/">
+            🎨 Create an Image
+          </a>
+
+          <a class="button secondary" href="#about">
+            Meet Rok ↓
+          </a>
+        </div>
+      </div>
+
+      <div class="mascot-box">
+        <img src="New%20Project.png"
+             alt="Rok, the friendly rock mascot">
+        <div class="mascot-label">Rok 🪨</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-label">The idea</div>
+      <h2>Small steps. Big ideas.</h2>
+
+      <p class="section-intro">
+        AI can help people create, learn, and explore.
+        You shouldn't have to be a technology expert to get started.
+        Rok represents making complicated things feel simple.
+      </p>
+
+      <div class="quote">
+        <blockquote>
+          You bring the prompt.<br>
+          Rok helps keep it simple.
+        </blockquote>
+        <p>Because getting started should be the easy part.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="values">
+    <div class="container">
+      <div class="section-label">What Rok believes</div>
+      <h2>AI - the headache = Rok AI.</h2>
+
+      <p class="section-intro">
+        Three simple principles guide Rok's mission.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">✨</div>
+          <h3>Easy to start</h3>
+          <p>
+            You shouldn't need a manual just to try an idea.
+            Start with a thought and see where it takes you.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">💚</div>
+          <h3>Made for people</h3>
+          <p>
+            Technology should support your creativity,
+            not get in the way of it.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">🚀</div>
+          <h3>Keep exploring</h3>
+          <p>
+            Experiment, learn as you go, and remember:
+            you don't need to get everything perfect on the first try.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="create">
+    <div class="container">
+      <div class="cta">
+        <div class="section-label">Your idea starts here</div>
+        <h2>Ready to make something?</h2>
+
+        <p>
+          Turn your imagination into images with BleepBloop AI.
+          Write a prompt, generate your image, and have fun creating.
+        </p>
+
+        <a class="button"
+           href="https://bleepbloopai.github.io/generator/">
+          Open the AI Image Generator ↗
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> Rok.</span>
+    <span>One solid idea: AI shouldn't be hard.</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
